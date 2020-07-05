@@ -9,11 +9,11 @@ DICT_SCORES = {
 
 
 def score(word):
-    sum = 0
-    word = word.upper()
-    for i in range(len(word)):
-        for letters, score in DICT_SCORES.items():
-            if word[i] in letters:
-                sum = sum + score
-                break
-    return sum
+    chars = [x.upper() for x in word if x.isalpha()]
+    return sum(map(lambda x: _score_by_letter(x), chars))
+
+
+def _score_by_letter(letter):
+    for letters, score in DICT_SCORES.items():
+        if letter in letters:
+            return score
