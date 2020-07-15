@@ -15,7 +15,7 @@ def largest(min_factor, max_factor):
                     factors = []
                 factors.append([x, y])
 
-    return None if value == -1 else value, factors
+    return None if len(factors) == 0 else value, factors
 
 
 def smallest(min_factor, max_factor):
@@ -35,12 +35,8 @@ def smallest(min_factor, max_factor):
                     factors = []
                 factors.append([x, y])
 
-    return None if value == max_factor * max_factor + 1 else value, factors
+    return None if len(factors) == 0 else value, factors
 
 
 def is_palindrome(number):
-    number_str = str(number)
-    for i in range(int(len(number_str) / 2)):
-        if number_str[i] != number_str[len(number_str) - i - 1]:
-            return False
-    return True
+    return str(number) == str(number)[::-1]
