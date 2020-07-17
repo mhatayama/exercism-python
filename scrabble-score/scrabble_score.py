@@ -14,5 +14,4 @@ score_by_letters = {letter: score for (letter, score)
 
 
 def score(word):
-    chars = [x.upper() for x in word if x.isalpha()]
-    return sum(map(lambda x: score_by_letters[x], chars))
+    return sum(score_by_letters[x.upper()] for x in word)
