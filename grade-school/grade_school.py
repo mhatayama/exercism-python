@@ -11,7 +11,7 @@ class School:
     def roster(self):
         sorted_grades = sorted(self.students_by_grade.keys())
         students_sorted_by_grade = [self.grade(grade) for grade in sorted_grades]
-        return [item for sublist in students_sorted_by_grade for item in sublist]
+        return [student for students in students_sorted_by_grade for student in students]
 
     def grade(self, grade_number):
         if not grade_number in self.students_by_grade:
