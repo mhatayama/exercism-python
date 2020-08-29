@@ -11,16 +11,32 @@ class Clock:
                         minute) % self.MINUTES_PER_DAY
 
     def __repr__(self):
+        return f'Clock(hour = {self.hour}, minute = {self.minute})'
+
+    def __str__(self):
         return f'{self.hour:02}:{self.minute:02}'
 
     def __eq__(self, other):
-        return self.minutes == other.minutes
+        if isinstance(other, Clock):
+            return self.minutes == other.minutes
+        else:
+            raise TypeError("Only Clock objects are allowed.")
 
-    def __add__(self, minutes):
-        return Clock(0, self.minutes + minutes)
+    def __add__(self, other):
+        if isinstance(other, Clock):
+            return Clock(0, self.minute + other.minutes)
+        elif isinstance(other, int):
+            return Clock(0, self.minutes + other)
+        else:
+            raise TypeError("Only Clock objects or integers are allowed.")
 
-    def __sub__(self, minutes):
-        return Clock(0, self.minutes - minutes)
+    def __sub__(self, other):
+        if isinstance(other, Clock):
+            return Clock(0, self.minute - other.minutes)
+        elif isinstance(other, int):
+            return Clock(0, self.minutes - other)
+        else:
+            raise TypeError("Only Clock objects or integers are allowed.")
 
     @property
     def hour(self):
