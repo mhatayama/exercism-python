@@ -17,10 +17,9 @@ class Clock:
         return f'{self.hour:02}:{self.minute:02}'
 
     def __eq__(self, other):
-        if isinstance(other, Clock):
-            return self.minutes == other.minutes
-        else:
-            raise TypeError("Only Clock objects are allowed.")
+        if not isinstance(other, Clock):
+            return NotImplemented
+        return self.minutes == other.minutes
 
     def __add__(self, other):
         if isinstance(other, Clock):
@@ -28,7 +27,7 @@ class Clock:
         elif isinstance(other, int):
             return Clock(0, self.minutes + other)
         else:
-            raise TypeError("Only Clock objects or integers are allowed.")
+            return NotImplemented
 
     def __sub__(self, other):
         if isinstance(other, Clock):
@@ -36,7 +35,7 @@ class Clock:
         elif isinstance(other, int):
             return Clock(0, self.minutes - other)
         else:
-            raise TypeError("Only Clock objects or integers are allowed.")
+            return NotImplemented
 
     @property
     def hour(self):
